@@ -12,6 +12,7 @@ import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.services.CategoryService;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
@@ -27,4 +28,10 @@ public class CategoryResource {
 
         return ResponseEntity.ok().body(list);
     }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<CategoryDTO> findById(@PathVariable Long id) {
+      CategoryDTO dto = service.findById(id);
+      return ResponseEntity.ok().body(dto);
+  }
 }
